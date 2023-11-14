@@ -160,10 +160,10 @@ namespace WpfApp2
             {
                 //Se crea lista de parámetros
                 List<SqlParameter> parameters = new List<SqlParameter>(){
-                    new SqlParameter("@Login", SqlDbType.NVarChar) {Value = LoginTB.Text},
-                    new SqlParameter("@Nombre", SqlDbType.NVarChar) {Value = NombreTB.Text},
-                    new SqlParameter("@Paterno", SqlDbType.NVarChar) {Value = ApellidPatTB.Text},
-                    new SqlParameter("@Materno", SqlDbType.NChar) {Value = ApellidoMatTB.Text},
+                    new SqlParameter("@Login", SqlDbType.VarChar) {Value = LoginTB.Text},
+                    new SqlParameter("@Nombre", SqlDbType.VarChar) {Value = NombreTB.Text},
+                    new SqlParameter("@Paterno", SqlDbType.VarChar) {Value = ApellidPatTB.Text},
+                    new SqlParameter("@Materno", SqlDbType.VarChar) {Value = ApellidoMatTB.Text},
                     new SqlParameter("@Sueldo", SqlDbType.Float)
                     {
                         Value = float.TryParse(SueldoTB.Text, out float sueldoValue) ? (object)sueldoValue : DBNull.Value
