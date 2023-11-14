@@ -1,0 +1,28 @@
+-- Creo la base de datos
+CREATE DATABASE PruebaBack;
+
+-- Selecciono la base de datos
+USE PruebaBack;
+
+-- Creo la tabla usuarios con userId como IDENTITY
+CREATE TABLE usuarios (
+    userId INT IDENTITY(1,1) PRIMARY KEY,
+    Login VARCHAR(100),
+    Nombre VARCHAR(100),
+    Paterno VARCHAR(100),
+    Materno VARCHAR(100)
+);
+
+-- Creo la tabla empleados con la relación a la tabla usuarios por medio de userId
+CREATE TABLE empleados (
+    userId INT IDENTITY(1,1) PRIMARY KEY,
+    Sueldo FLOAT,
+    FechaIngreso DATE,
+    FOREIGN KEY (userId) REFERENCES usuarios(userId)
+);
+
+-- Los datos los importe a las tablas utilizando el Wizard de SQLServer 
+-- dando click derecho en la DB, luego Task y finalmente en Import Data
+
+
+

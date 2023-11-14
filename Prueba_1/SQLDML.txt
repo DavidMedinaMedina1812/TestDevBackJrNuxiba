@@ -1,0 +1,43 @@
+-- Para la instrucción Depurar solo los ID diferentes de 6,7,9 y 10 de la tabla usuarios,
+-- no me quedo claro si era quitar solo 6,7,9 y 10 o quitar todo que no fuera 6,7,9 y 10
+-- así que puse las consultas para las 2 maneras
+
+-- Mostrar todos exepto 6,7,9 y 10 de tabla usuarios
+SELECT *
+FROM usuarios
+WHERE userId NOT IN (6, 7, 9, 10);
+
+-- Mostrar solamente 6,7,9 y 10 de tabla usuarios
+SELECT *
+FROM usuarios
+WHERE userId IN (6, 7, 9, 10);
+
+-- Actualizar el dato Sueldo en un 10 porciento a los empleados que tienen fechas entre el año 2000 y 200
+UPDATE empleados
+SET Sueldo = Sueldo * 1.1
+WHERE DATEPART(YEAR, FechaIngreso) BETWEEN 2000 AND 2001;
+
+-- Realiza una consulta para traer el nombre de usuario y fecha de ingreso de los usuarios que gananen mas de 10000 y su apellido comience con T ordernado del mas reciente al mas antiguo
+SELECT
+    u.Nombre + ' ' + u.Paterno + ' ' + u.Materno AS NombreCompleto,
+    e.FechaIngreso
+FROM
+    usuarios u
+JOIN
+    empleados e ON u.userId = e.userId
+WHERE
+    e.Sueldo > 10000
+    AND (u.Paterno LIKE 'T%')
+ORDER BY
+    e.FechaIngreso DESC;
+
+-- Realiza una consulta donde agrupes a los empleados por sueldo, un grupo con los que ganan menos de 1200 y uno mayor o igual a 1200, cuantos hay en cada grupo?
+
+-- Con esta consulta muestra solamente el número de personas por grupo, 46 ganan mas de $1,200 y 0 ganan menos.
+SELECT
+    COUNT(CASE WHEN Sueldo < 1200 THEN 1 END) AS MenosDe1200,
+    COUNT(CASE WHEN Sueldo >= 1200 THEN 1 END) AS IgualOMayorA1200
+FROM
+    empleados;
+
+
